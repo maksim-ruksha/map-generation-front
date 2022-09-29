@@ -1,5 +1,6 @@
 import React from "react";
-import {Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, TextField, Typography} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, CardHeader, TextField, Typography} from "@mui/material";
+import "../../styles/LoginPage/LoginPage.css";
 
 export default function LoginPageComponent({
                                                onLoginTextChange,
@@ -9,38 +10,42 @@ export default function LoginPageComponent({
                                                nameError,
                                                passwordError,
                                            }) {
-    return (<Box sx={{maxWidth: 312, alignSelf: "center"}}>
-        <Card>
-            <CardHeader title={"Login"}>
-            </CardHeader>
-            <CardContent>
-                <TextField
-                    fullWidth
-                    margin={"dense"}
-                    label={"Login"}
-                    onChange={onLoginTextChange}
-                    error={nameError}
-                />
-                <TextField
-                    fullWidth
-                    margin={"dense"}
-                    label={"Password"}
-                    onChange={onPasswordTextChange}
-                    error={passwordError}
-                />
-            </CardContent>
-            <CardActions>
-                <Button
-                    onClick={onLoginClick}
-                >
-                    Login
-                </Button>
-                <Button
-                    onClick={onRegisterClick}
-                >
-                    Register
-                </Button>
-            </CardActions>
-        </Card>
-    </Box>);
+    return (
+        <Box
+            sx={{height: "80vh"}}
+            className="login-card"
+        >
+            <Card>
+                <CardHeader title={"Login"}>
+                </CardHeader>
+                <CardContent>
+                    <TextField
+                        fullWidth
+                        margin={"dense"}
+                        label={"Login"}
+                        onChange={onLoginTextChange}
+                        error={nameError}
+                    />
+                    <TextField
+                        fullWidth
+                        margin={"dense"}
+                        label={"Password"}
+                        onChange={onPasswordTextChange}
+                        error={passwordError}
+                    />
+                </CardContent>
+                <CardActions>
+                    <Button
+                        onClick={onLoginClick}
+                    >
+                        Login
+                    </Button>
+                    <Button
+                        onClick={onRegisterClick}
+                    >
+                        Register
+                    </Button>
+                </CardActions>
+            </Card>
+        </Box>);
 }
