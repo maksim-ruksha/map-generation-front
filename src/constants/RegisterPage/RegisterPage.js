@@ -1,0 +1,1 @@
+export const REGISTER_API_REGISTER = "/users/register"

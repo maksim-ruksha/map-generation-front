@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+
+import {LOGIN_PAGE_ROUTE, REGISTER_PAGE_ROUTE} from "./routes/Routes";
+import {Fragment} from "react";
+import LoginPageContainer from "./containers/LoginPage/LoginPageContainer";
+import RegisterPageContainer from "./containers/RegisterPage/RegisterPageContainer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <Router>
+            <Fragment>
+                <Routes>
+                    <Route exact path={LOGIN_PAGE_ROUTE} element={<LoginPageContainer/>}>
+                    </Route>
+                    <Route exact path={REGISTER_PAGE_ROUTE} element={<RegisterPageContainer/>}>
+                    </Route>
+                </Routes>
+            </Fragment>
+        </Router>
+    );
 }
 
 export default App;
