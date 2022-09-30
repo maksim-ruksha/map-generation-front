@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import LoginPageComponent from "../../components/LoginPage/LoginPageComponent";
 import axios from "axios";
 import {API_BASE} from "../../constants/App/App";
-import {API_LOGIN, API_VALIDATE_TOKEN} from "../../constants/LoginPage/LoginPage";
+import {LOGIN_API_LOGIN, API_VALIDATE_TOKEN} from "../../constants/LoginPage/LoginPage";
 
 export default function LoginPageContainer() {
 
@@ -26,7 +26,7 @@ export default function LoginPageContainer() {
 
     const onLoginClick = async (e) => {
         try {
-            const response = await axios.get(API_BASE + API_LOGIN, {
+            const response = await axios.get(API_BASE + LOGIN_API_LOGIN, {
                 params: {
                     name: name,
                     password: password

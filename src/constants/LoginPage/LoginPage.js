@@ -1,1 +1,1 @@
-export const API_LOGIN = "/users/login"
+export const LOGIN_API_LOGIN = "/users/login"
