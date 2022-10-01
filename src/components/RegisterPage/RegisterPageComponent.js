@@ -14,7 +14,7 @@ export default function RegisterPageComponent({
     return (
         <Box
             sx={{height: "80vh"}}
-            className="login-card"
+            className="box-center"
         >
             <Card>
                 <CardHeader title={"Register"}>
