@@ -13,12 +13,13 @@ export default function RegisterPageComponent({
                                               }) {
     return (
         <Box
-            sx={{height: "80vh"}}
+            sx={{
+                margin: 1
+            }}
             className="box-center"
         >
             <Card>
-                <CardHeader title={"Register"}>
-                </CardHeader>
+                <CardHeader title={"Register"}/>
                 <CardContent>
                     <TextField
                         fullWidth

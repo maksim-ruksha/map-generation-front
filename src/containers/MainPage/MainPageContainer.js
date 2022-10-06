@@ -11,13 +11,13 @@ import {API_BASE} from "../../constants/App/App";
 export default function MainPageContainer() {
     // descending sorting by id should give fresh result
     const [sortField, setSortField] = useState(MAIN_PAGE_SORT_FIELD_ID);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [direction, setDirection] = useState(MAIN_PAGE_SORT_DIRECTION_DESCENDING);
-    // TODO: make consts
     const [size, setSize] = useState(MAIN_PAGE_SIZES[0]);
+    const [maps, setMaps] = useState([]);
 
     const loadPage = async () => {
-        const response = await axios.get(API_BASE + MAIN_PAGE_API_GET_PAGE,
+        await axios.get(API_BASE + MAIN_PAGE_API_GET_PAGE,
             {
                 params: {
                     sortField: sortField,
@@ -25,12 +25,18 @@ export default function MainPageContainer() {
                     direction: direction,
                     size: size
                 }
-            }
-        );
-        console.log(response.data);
+            })
+            .then((response) => {
+                setMaps(response.data);
+            })
+            .catch((error) => {
+
+            });
     }
 
-    loadPage();
+    React.useEffect(() => {
+        loadPage();
+    }, []);
 
-    return <MainPageComponent/>
+    return <MainPageComponent maps={maps}/>
 }

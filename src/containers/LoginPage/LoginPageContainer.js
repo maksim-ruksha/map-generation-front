@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import LoginPageComponent from "../../components/LoginPage/LoginPageComponent";
 import axios from "axios";
 import {API_BASE} from "../../constants/App/App";
-import {LOGIN_API_LOGIN, API_VALIDATE_TOKEN} from "../../constants/LoginPage/LoginPage";
+import {LOGIN_PAGE_API_LOGIN, LOGIN_PAGE_REDIRECT_ROUTE} from "../../constants/LoginPage/LoginPage";
+import {setToken} from "../../services/JwtService";
+import {redirect} from "react-router-dom";
 
 export default function LoginPageContainer() {
 
@@ -12,7 +14,6 @@ export default function LoginPageContainer() {
     const [passwordError, setPasswordError] = useState();
 
     const [jwt, setJwt] = useState();
-
 
     const onLoginChange = (e) => {
         setName(e.target.value);
@@ -25,29 +26,27 @@ export default function LoginPageContainer() {
     }
 
     const onLoginClick = async (e) => {
-        try {
-            const response = await axios.get(API_BASE + LOGIN_API_LOGIN, {
-                params: {
-                    name: name,
-                    password: password
+        await axios.get(API_BASE + LOGIN_PAGE_API_LOGIN, {
+            params: {
+                name: name,
+                password: password
+            }
+        })
+            .then((response) => {
+                setToken(response.data);
+            })
+            .catch((error) => {
+                if (error?.response.status === 404) {
+                    setNameError(true);
                 }
-            });
-            // TODO: save token somewhere
-            setJwt(response.data)
-        } catch (error) {
-            if (error?.response.status === 404) {
-                setNameError(true);
-            }
-            if (error?.response.status === 400) {
-                setPasswordError(true);
-            }
-        }
-
-
+                if (error?.response.status === 400) {
+                    setPasswordError(true);
+                }
+            })
     }
 
     const onRegisterClick = (e) => {
-
+        redirect(LOGIN_PAGE_REDIRECT_ROUTE);
     }
 
     return <LoginPageComponent

@@ -12,12 +12,13 @@ export default function LoginPageComponent({
                                            }) {
     return (
         <Box
-            sx={{height: "80vh"}}
+            sx={{
+                margin: 1
+            }}
             className="box-center"
         >
             <Card>
-                <CardHeader title={"Login"}>
-                </CardHeader>
+                <CardHeader title={"Login"}/>
                 <CardContent>
                     <TextField
                         fullWidth
