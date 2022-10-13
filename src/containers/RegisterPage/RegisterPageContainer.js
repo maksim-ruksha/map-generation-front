@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import RegisterPageComponent from "../../components/RegisterPage/RegisterPageComponent";
 import {API_BASE} from "../../constants/App/App";
-import {REGISTER_PAGE_API_REGISTER, REGISTER_PAGE_REDIRECT_ROUTE} from "../../constants/RegisterPage/RegisterPage";
+import {REGISTER_PAGE_API_REGISTER, REGISTER_PAGE_MAIN_REDIRECT_ROUTE} from "../../constants/RegisterPage/RegisterPage";
 import axios from "axios";
-import {redirect} from "react-router-dom";
 import {setUser} from "../../services/UserService";
+import {Navigate} from "react-router-dom";
 
 export default function RegisterPageContainer() {
     const [name, setName] = useState();
@@ -13,6 +13,8 @@ export default function RegisterPageContainer() {
     const [nameError, setNameError] = useState();
     const [passwordError, setPasswordError] = useState();
     const [passwordRepeatError, setPasswordRepeatError] = useState();
+
+    const [redirect, setRedirect] = useState(false);
 
     const onNameChange = (e) => {
         setName(e.target.value);
@@ -44,6 +46,7 @@ export default function RegisterPageContainer() {
             })
             .then((response) => {
                 setUser(response.data.name, response.data.id);
+                setRedirect(true);
             })
             .catch((error) => {
                 if (error?.response.status === 404) {
@@ -56,16 +59,11 @@ export default function RegisterPageContainer() {
             });
     }
 
-    const onLoginClick = (e) => {
-        redirect(REGISTER_PAGE_REDIRECT_ROUTE);
-    }
-
-    return <RegisterPageComponent
+    return redirect ? <Navigate to={REGISTER_PAGE_MAIN_REDIRECT_ROUTE}/> : <RegisterPageComponent
         onLoginTextChange={onNameChange}
         onPasswordTextChange={onPasswordChange}
         onPasswordRepeatTextChange={onPasswordRepeatChange}
         onRegisterClick={onRegisterClick}
-        onLoginClick={onLoginClick}
         nameError={nameError}
         passwordError={passwordError}
         passwordRepeatError={passwordRepeatError}

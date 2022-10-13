@@ -6,7 +6,8 @@ import {
 } from "../../constants/MapGenerationComponent/MapGenerationComponent";
 import {API_BASE} from "../../constants/App/App";
 import axios from "axios";
-import {redirect} from "react-router-dom";
+import {getToken} from "../../services/JwtService";
+import {getUser} from "../../services/UserService";
 
 
 export default function MapGenerationPageContainer() {
@@ -50,14 +51,17 @@ export default function MapGenerationPageContainer() {
                 description: description,
                 author: {
                     // TODO: need an id
-                    id: 10
+                    id: getUser().id
                 }
             },
-            null
+            {
+                headers: {
+                    "Authorization": "Bearer " + getToken()
+                }
+            }
         ).then(
             (response) => {
                 setPublishing(false);
-                redirect(MAP_GENERATION_PAGE_PUBLISHED_REDIRECT_URL);
             }
         ).catch((error) => {
                 console.error(error)

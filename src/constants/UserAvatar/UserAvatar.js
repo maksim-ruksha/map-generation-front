@@ -1,0 +1,1 @@
+export const USER_AVATAR_PROFILE_REDIRECT_ROUTE = "/user/";

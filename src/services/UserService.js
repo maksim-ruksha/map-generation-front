@@ -1,3 +1,5 @@
+import {validateToken} from "./JwtService";
+
 const USER_NAME_LOCAL_STORAGE_KEY = "MAP_GENERATION_USER_NAME";
 const USER_ID_LOCAL_STORAGE_KEY = "MAP_GENERATION_USER_ID";
 
@@ -13,7 +15,11 @@ export const getUser = () => {
     };
 }
 
-export const isAuthorized = () => {
-    let user = getUser();
-    return user.name === null || user.id === null;
+
+export const isAuthorized = async () => {
+    const user = getUser();
+    const isTokenValid = await validateToken(user.name);
+    return isTokenValid
+        && user.name !== null
+        && user.id !== null;
 }

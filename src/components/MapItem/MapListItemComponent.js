@@ -1,77 +1,80 @@
 import React from "react";
-import {Avatar, Button, Card, Link, Stack, Typography} from "@mui/material";
+import {Avatar, Button, Card, CardActionArea, Link, Stack, Typography} from "@mui/material";
 import {MAIN_PAGE_MAP_REDIRECT_ROUTE} from "../../constants/MainPage/MainPage";
 import {MAP_LIST_ITEM_API_GET_IMAGE} from "../../constants/MapListItemComponent/MapListItemComponent";
 import {API_BASE} from "../../constants/App/App";
 import {getColor} from "../../services/ColorService";
-import AccountAvatarComponent from "../AccountAvatarComponent/AccountAvatarComponent";
+import UserAvatarComponent from "../UserAvatar/UserAvatarComponent";
 
 export default function MapListItemComponent({
                                                  id,
                                                  name,
                                                  authorName,
                                                  seed,
-                                                 description
+                                                 description,
+                                                 redirectRoute,
+                                                 imageURL
                                              }) {
     return <Card
         sx={{
             margin: "8px",
+            minWidth: "calc(min(100%, 860px))",
             maxWidth: 860
         }}
     >
-        <Stack
-            direction="row">
-            <Avatar
-                variant="square"
-                sx={{
-                    height: 128,
-                    width: 128,
-                    borderRadius: 1
-                }}
-                src={API_BASE + MAP_LIST_ITEM_API_GET_IMAGE + "/" + seed}
-            />
+        <CardActionArea href={redirectRoute}>
             <Stack
-                direction="column"
-                sx={{
-                    margin: 1
-                }}
-            >
-                <Typography
-                    variant="h5"
+                direction="row">
+                <Avatar
+                    variant="square"
                     sx={{
-                        padding: "2px",
-                        fontWeight: 500
+                        height: 148,
+                        width: 148,
+                        borderRadius: 1
                     }}
-                >
-                    {"Lorem ipsum " + id}
-                </Typography>
-                <Typography
-                    sx={{
-                        padding: "2px"
-                    }}
-                >
-                    What is Lorem Ipsum?
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s.
-                </Typography>
+                    src={imageURL}
+                />
                 <Stack
-                    direction="row"
+                    direction="column"
                     sx={{
-                        alignItems: "center"
-                    }}>
-                    <AccountAvatarComponent
-                        name={authorName}
-                    />
+                        margin: 1
+                    }}
+                >
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            padding: "2px",
+                            fontWeight: 500
+                        }}
+                    >
+                        {name}
+                    </Typography>
                     <Typography
                         sx={{
-                            marginLeft: 1,
-                            fontWeight: 500
-                        }}>
-                        {authorName}
+                            padding: "2px"
+                        }}
+                    >
+                        {description}
                     </Typography>
+                    <Stack
+                        direction="row"
+                        sx={{
+                            alignItems: "center"
+                        }}>
+                        <UserAvatarComponent
+                            name={authorName}
+                        />
+                        <Typography
+                            sx={{
+                                marginLeft: 1,
+                                fontWeight: 500
+                            }}>
+                            {authorName}
+                        </Typography>
+                    </Stack>
                 </Stack>
             </Stack>
-        </Stack>
+        </CardActionArea>
     </Card>
 
 }
