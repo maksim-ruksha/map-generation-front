@@ -1,23 +1,28 @@
 import React from "react";
-import {Box, Button, Card, CardActions, CardContent, CardHeader, TextField, Typography} from "@mui/material";
-import "../../styles/LoginPage/LoginPage.css";
+import {Box, Button, Card, CardActions, CardContent, CardHeader, Link, Stack, TextField} from "@mui/material";
+import AppBarComponent from "../AppBar/AppBarComponent";
+import {LOGIN_PAGE_REGISTER_REDIRECT_ROUTE} from "../../constants/LoginPage/LoginPage";
 
 export default function LoginPageComponent({
                                                onLoginTextChange,
                                                onPasswordTextChange,
                                                onLoginClick,
-                                               onRegisterClick,
                                                nameError,
                                                passwordError,
                                            }) {
-    return (
-        <Box
-            sx={{height: "80vh"}}
-            className="login-card"
+    return (<Box>
+        <AppBarComponent
+            title="Login"
+            showUserAccount={false}/>
+        <Stack
+            direction="column"
+            sx={{
+                margin: 1,
+                alignItems: "center"
+            }}
         >
             <Card>
-                <CardHeader title={"Login"}>
-                </CardHeader>
+                <CardHeader title={"Login"}/>
                 <CardContent>
                     <TextField
                         fullWidth
@@ -41,11 +46,12 @@ export default function LoginPageComponent({
                         Login
                     </Button>
                     <Button
-                        onClick={onRegisterClick}
+                        href={LOGIN_PAGE_REGISTER_REDIRECT_ROUTE}
                     >
                         Register
                     </Button>
                 </CardActions>
             </Card>
-        </Box>);
+        </Stack>
+    </Box>);
 }

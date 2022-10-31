@@ -1,8 +1,15 @@
 import React, {useState} from "react";
 import RegisterPageComponent from "../../components/RegisterPage/RegisterPageComponent";
 import {API_BASE} from "../../constants/App/App";
-import {REGISTER_API_REGISTER} from "../../constants/RegisterPage/RegisterPage";
+import {
+    REGISTER_PAGE_API_LOGIN,
+    REGISTER_PAGE_API_REGISTER,
+    REGISTER_PAGE_MAIN_REDIRECT_ROUTE
+} from "../../constants/RegisterPage/RegisterPage";
 import axios from "axios";
+import {setUser} from "../../services/UserService";
+import {Navigate} from "react-router-dom";
+import {setToken} from "../../services/JwtService";
 
 export default function RegisterPageContainer() {
     const [name, setName] = useState();
@@ -11,6 +18,51 @@ export default function RegisterPageContainer() {
     const [nameError, setNameError] = useState();
     const [passwordError, setPasswordError] = useState();
     const [passwordRepeatError, setPasswordRepeatError] = useState();
+
+    const [userLoaded, setUserLoaded] = useState(false);
+    const [jwtLoaded, setJwtLoaded] = useState(false);
+
+    const [redirect, setRedirect] = useState(false);
+
+    const getUser = () => {
+        axios.get(API_BASE + REGISTER_PAGE_API_REGISTER,
+            {
+                params: {
+                    name: name,
+                    password: password,
+                    passwordRepeat: passwordRepeat
+                }
+            })
+            .then((response) => {
+                getJwt();
+                setUser(response.data.name, response.data.id);
+                setUserLoaded(true);
+            })
+            .catch((error) => {
+                if (error?.response.status === 404) {
+                    setNameError(true);
+                }
+                if (error?.response.status === 400) {
+                    setPasswordError(true);
+                    setPasswordRepeatError(true);
+                }
+            });
+    }
+
+    const getJwt = () => {
+        axios.get(API_BASE + REGISTER_PAGE_API_LOGIN, {
+            params: {
+                name: name, password: password
+            }
+        })
+            .then((response) => {
+                setToken(response.data);
+                setJwtLoaded(true);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     const onNameChange = (e) => {
         setName(e.target.value);
@@ -27,42 +79,25 @@ export default function RegisterPageContainer() {
         setPasswordRepeatError(false);
     }
 
-    const onRegisterClick = async (e) => {
+    const onRegisterClick = (e) => {
         if (password !== passwordRepeat) {
             setPasswordRepeatError(true);
-            return;
-        }
-        try {
-            const response = await axios.get(API_BASE + REGISTER_API_REGISTER,
-                {
-                    params: {
-                        name: name,
-                        password: password,
-                        passwordRepeat: passwordRepeat
-                    }
-                });
-            console.log(response.data);
-        } catch (error) {
-            if (error?.response.status === 404) {
-                setNameError(true);
-            }
-            if (error?.response.status === 400) {
-                setPasswordError(true);
-                setPasswordRepeatError(true);
-            }
+        } else {
+            getUser();
         }
     }
 
-    const onLoginClick = (e) => {
+    React.useEffect(() => {
+        if (userLoaded && jwtLoaded) {
+            setRedirect(true);
+        }
+    }, [userLoaded, jwtLoaded])
 
-    }
-
-    return <RegisterPageComponent
+    return redirect ? <Navigate to={REGISTER_PAGE_MAIN_REDIRECT_ROUTE}/> : <RegisterPageComponent
         onLoginTextChange={onNameChange}
         onPasswordTextChange={onPasswordChange}
         onPasswordRepeatTextChange={onPasswordRepeatChange}
         onRegisterClick={onRegisterClick}
-        onLoginClick={onLoginClick}
         nameError={nameError}
         passwordError={passwordError}
         passwordRepeatError={passwordRepeatError}
