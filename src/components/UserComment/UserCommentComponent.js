@@ -1,5 +1,4 @@
 import React from "react";
-import UserAccountContainer from "../../containers/UserAccount/UserAccountContainer";
 import {Card, CardContent, IconButton, Stack, TextField, Typography} from "@mui/material";
 import {getUser} from "../../services/UserService";
 import UserAvatarContainer from "../../containers/UserAvatar/UserAvatarContainer";

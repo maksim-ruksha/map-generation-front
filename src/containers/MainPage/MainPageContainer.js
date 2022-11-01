@@ -36,8 +36,8 @@ export default function MainPageContainer() {
         setPage(page - 1);
     }
 
-    const getPageCount = async () => {
-        await axios.get(API_BASE + MAIN_PAGE_API_GET_PAGES_COUNT,
+    const getPageCount = () => {
+        axios.get(API_BASE + MAIN_PAGE_API_GET_PAGES_COUNT,
             {
                 params: {
                     pageSize: pageSize
@@ -53,9 +53,9 @@ export default function MainPageContainer() {
             });
     }
 
-    const loadPage = async () => {
+    const loadPage = () => {
         setLoading(true);
-        await axios.get(API_BASE + MAIN_PAGE_API_GET_PAGE,
+        axios.get(API_BASE + MAIN_PAGE_API_GET_PAGE,
             {
                 params: {
                     sortField: sortField,

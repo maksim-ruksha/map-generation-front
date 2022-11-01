@@ -1,6 +1,6 @@
 import React from "react";
 import {getColor} from "../../services/ColorService";
-import {Avatar, IconButton, Link} from "@mui/material";
+import {Avatar, IconButton} from "@mui/material";
 import {USER_AVATAR_PROFILE_REDIRECT_ROUTE} from "../../constants/UserAvatar/UserAvatar";
 
 export default function UserAvatarComponent({user}) {

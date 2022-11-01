@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Button, Card, CardActions, CardContent, CardHeader, Link, Stack, TextField} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, CardHeader, Stack, TextField} from "@mui/material";
 import {REGISTER_PAGE_LOGIN_REDIRECT_ROUTE} from "../../constants/RegisterPage/RegisterPage";
 import AppBarComponent from "../AppBar/AppBarComponent";
 

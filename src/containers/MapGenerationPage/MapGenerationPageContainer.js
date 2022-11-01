@@ -22,7 +22,7 @@ export default function MapGenerationPageContainer() {
     const [mapImageURL, setMapImageURL] = useState("");
     const [publishing, setPublishing] = useState(false);
 
-    const [redirect, setRedirect] = useState(false);
+    const [redirect] = useState(false);
     const [redirectToMap, setRedirectToMap] = useState(false);
     const [mapId, setMapId] = useState();
 

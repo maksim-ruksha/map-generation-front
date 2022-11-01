@@ -1,7 +1,7 @@
 import React from "react";
 import AppBarComponent from "../AppBar/AppBarComponent";
 import MapListItemContainer from "../../containers/MapItem/MapListItemContainer";
-import {Box, Fab, FormControl, InputLabel, Link, MenuItem, Pagination, Select, Stack} from "@mui/material";
+import {Box, Fab, FormControl, InputLabel, MenuItem, Pagination, Select, Stack} from "@mui/material";
 import {
     MAIN_PAGE_NEW_MAP_REDIRECT_ROUTE,
     MAIN_PAGE_SIZES, MAIN_PAGE_SORT_DIRECTIONS,

@@ -1,14 +1,7 @@
 import React from "react";
-import UserAccountContainer from "../../containers/UserAccount/UserAccountContainer";
 import {Card, CardContent, Stack, Typography} from "@mui/material";
 import UserAvatarContainer from "../../containers/UserAvatar/UserAvatarContainer";
-import * as PropTypes from "prop-types";
 
-function CradContent(props) {
-    return null;
-}
-
-CradContent.propTypes = {children: PropTypes.node};
 export default function CommentComponent({
                                              comment
                                          }) {

@@ -15,9 +15,9 @@ export default function RegisterPageContainer() {
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [passwordRepeat, setPasswordRepeat] = useState();
-    const [nameError, setNameError] = useState();
-    const [passwordError, setPasswordError] = useState();
-    const [passwordRepeatError, setPasswordRepeatError] = useState();
+    const [nameError, setNameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [passwordRepeatError, setPasswordRepeatError] = useState(false);
 
     const [userLoaded, setUserLoaded] = useState(false);
     const [jwtLoaded, setJwtLoaded] = useState(false);

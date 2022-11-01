@@ -1,5 +1,5 @@
 import React from "react";
-import {AppBar, Box, Toolbar, Typography} from "@mui/material";
+import {AppBar, Toolbar, Typography} from "@mui/material";
 import {getUser} from "../../services/UserService";
 import UserAccountContainer from "../../containers/UserAccount/UserAccountContainer";
 

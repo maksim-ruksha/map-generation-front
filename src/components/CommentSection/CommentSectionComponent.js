@@ -1,8 +1,7 @@
 import React from "react";
-import CommentComponent from "../Comment/CommentComponent";
-import {Box, Pagination, Stack, Typography} from "@mui/material";
-import UserCommentComponent from "../UserComment/UserCommentComponent";
+import {Pagination, Stack, Typography} from "@mui/material";
 import UserCommentContainer from "../../containers/UserComment/UserCommentContainer";
+import CommentContainer from "../../containers/Comment/CommentContainer";
 
 export default function CommentSectionComponent({
                                                     comments,
@@ -27,7 +26,7 @@ export default function CommentSectionComponent({
         <UserCommentContainer
             map={map}/>
         {
-            comments.map(comment => <CommentComponent
+            comments.map(comment => <CommentContainer
                 key={comment.id}
                 comment={comment}/>)
         }

@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import MapListItemComponent from "../../components/MapItem/MapListItemComponent";
 import {API_BASE} from "../../constants/App/App";
 import {
     MAP_LIST_ITEM_API_GET_IMAGE,
     MAP_LIST_ITEM_PAGE_REDIRECT_ROUTE
 } from "../../constants/MapListItemComponent/MapListItemComponent";
-import axios from "axios";
 
 export default function MapListItemContainer({
                                                  map

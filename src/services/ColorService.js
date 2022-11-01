@@ -9,13 +9,11 @@ export const getColor = (seed) => {
 
     const n = normalize(r, g, b);
 
-    const result = rgbToHex(
-         Math.floor(n.r * 255),
-         Math.floor(n.g * 255),
-         Math.floor(n.b * 255)
-     );
-
-    return result;
+    return rgbToHex(
+        Math.floor(n.r * 255),
+        Math.floor(n.g * 255),
+        Math.floor(n.b * 255)
+    );
 }
 
 const normalize = (r, g, b) => {

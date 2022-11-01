@@ -1,1 +1,4 @@
 export const USER_AVATAR_PROFILE_REDIRECT_ROUTE = "/user";
+
+export class USER_ACCOUNT_PROFILE_REDIRECT_ROUTE {
+}

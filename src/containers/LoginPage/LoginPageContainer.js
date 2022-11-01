@@ -3,7 +3,7 @@ import LoginPageComponent from "../../components/LoginPage/LoginPageComponent";
 import axios from "axios";
 import {API_BASE} from "../../constants/App/App";
 import {
-    LOGIN_PAGE_API_GET_USER, LOGIN_PAGE_API_LOGIN, LOGIN_PAGE_MAIN_REDIRECT_ROUTE, LOGIN_PAGE_REGISTER_REDIRECT_ROUTE
+    LOGIN_PAGE_API_GET_USER, LOGIN_PAGE_API_LOGIN, LOGIN_PAGE_MAIN_REDIRECT_ROUTE
 } from "../../constants/LoginPage/LoginPage";
 import {setToken} from "../../services/JwtService";
 import {Navigate} from "react-router-dom";
@@ -11,11 +11,11 @@ import {setUser} from "../../services/UserService";
 
 export default function LoginPageContainer() {
 
-    const [name, setName] = useState();
-    const [password, setPassword] = useState();
-    const [nameError, setNameError] = useState();
-    const [passwordError, setPasswordError] = useState();
-    const [jwt, setJwt] = useState();
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [nameError, setNameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [jwt, setJwt] = useState("");
 
     const [redirect, setRedirect] = useState(false);
 
@@ -48,8 +48,8 @@ export default function LoginPageContainer() {
             })
     }
 
-    const loadUserData = async () => {
-        await axios.get(API_BASE + LOGIN_PAGE_API_GET_USER + name, null)
+    const loadUserData = () => {
+        axios.get(API_BASE + LOGIN_PAGE_API_GET_USER + name, null)
             .then((response) => {
                 setUser(response.data.name, response.data.id);
                 setRedirect(true);

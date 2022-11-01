@@ -1,16 +1,10 @@
 import React from "react";
-import {Avatar, Button, Card, CardActionArea, Link, Stack, Typography} from "@mui/material";
-import {MAIN_PAGE_MAP_REDIRECT_ROUTE} from "../../constants/MainPage/MainPage";
-import {MAP_LIST_ITEM_API_GET_IMAGE} from "../../constants/MapListItemComponent/MapListItemComponent";
-import {API_BASE} from "../../constants/App/App";
-import {getColor} from "../../services/ColorService";
+import {Avatar, Card, CardActionArea, Stack, Typography} from "@mui/material";
 import UserAvatarComponent from "../UserAvatar/UserAvatarComponent";
 
 export default function MapListItemComponent({
-                                                 id,
                                                  name,
                                                  author,
-                                                 seed,
                                                  description,
                                                  redirectRoute,
                                                  imageURL

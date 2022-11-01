@@ -1,10 +1,8 @@
 import React from "react";
-import {Avatar, Box, Card, CardHeader, CardMedia, Fab, IconButton, Stack, Typography} from "@mui/material";
+import {Avatar, Box, Card, CardMedia, Fab, IconButton, Stack, Typography} from "@mui/material";
 import AppBarComponent from "../AppBar/AppBarComponent";
-import UserAvatarContainer from "../../containers/UserAvatar/UserAvatarContainer";
 import {getColor} from "../../services/ColorService";
 import MapListItemContainer from "../../containers/MapItem/MapListItemContainer";
-import EditIcon from "@mui/icons-material/Edit";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {USER_PAGE_NEW_MAP_REDIRECT_ROUTE} from "../../constants/UserPage/UserPage";
 

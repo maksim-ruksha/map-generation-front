@@ -6,10 +6,8 @@ import {
     Card,
     CardActions,
     CardContent,
-    CardHeader, Chip,
-    Stack,
-    TextField,
-    Typography
+    CardHeader, Stack,
+    TextField
 } from "@mui/material";
 import AppBarComponent from "../AppBar/AppBarComponent";
 

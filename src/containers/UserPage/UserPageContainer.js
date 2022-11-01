@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import UserPageComponent from "../../components/UserPage/UserPageComponent";
-import {useLocation, useSearchParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import axios from "axios";
 import {API_BASE} from "../../constants/App/App";
 import {USER_PAGE_API_GET_USER, USER_PAGE_API_GET_USER_MAPS} from "../../constants/UserPage/UserPage";
@@ -44,7 +44,6 @@ export default function UserPageContainer() {
             location.search.split("?id=")[1]
         );
         setUserId(id);
-
     }, []);
 
     React.useEffect(() => {
